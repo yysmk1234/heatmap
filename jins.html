@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JINS</title>
+    <style>
+        #main{
+            width: 1000px;
+            height: 600px;
+            border:1px solid #333;
+            margin: 100px auto 20px;
+            background: url("img/jins.png");
+            position: relative;
+        }
+        #main ul{
+            position: absolute;
+            height: 20px;
+            width: 5px;
+            list-style: none;
+            bottom: 80px;
+            left: 30px;
+        }
+        #main ul li{
+            border-left: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding-left: 7px;
+            position: relative;
+            height: 20px;
+        }
+        #main ul li span{
+            position: absolute;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            /*background: #333;*/
+            left: -18px;
+            bottom: 17px;
+        }
+        #main ul li b{
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+        }
+        .bt{
+            margin: 10px auto;
+            width: 1000px;
+            height: 50px;
+        }
+        .bt button{
+            outline: none;
+            border:none;
+            background: #99EBFF;
+            width: 200px;
+            border-radius: 4px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <ul>
+        <li><b>9</b></li>
+        <li><span style="background: red"></span><b>6</b></li>
+        <li><span style="background: blue"></span><b>3</b></li>
+        <li><span style="background: green"></span><b>0</b></li>
+    </ul>
+</div>
+<div class="bt">
+    <button class="child">学生</button>
+    <button class="worker">白领</button>
+    <button class="reset">重置</button>
+</div>
+</body>
+<script src="js/heatmap.js"></script>
+<script src="js/jquery.min.js"></script>
+<script>
+    (function () {
+        $('.reset').on("click",function(){
+            h_map.setData(dataPoint1);
+            clearInterval(timer);
+        });
+        $('.child').on("click",function(){
+            paint(data_queue1);
+//            console.log(dataPoint);
+        });
+        $('.worker').on("click",function(){
+            paint(data_queue2);
+        });
+
+//初始化
+        var config = {
+            container: document.getElementById('main'),
+            radius:40,
+            maxOpacity:.8,
+            minOpacity:0,
+            blur:.75,
+            gradient:{
+                '.3':'green',
+                '.6':'blue',
+                '.9':'red'
+            }
+        };
+        //初始化点
+        var dataPoint = {
+            max:100,
+            min:0,
+            data:[
+                {x:582,y:324,value:0},      //A1
+                {x:540,y:324,value:0},      //A2
+                {x:580,y:200,value:0},      //B1
+                {x:540,y:200,value:0},      //B2
+                {x:673,y:741,value:0},      //C1
+                {x:673,y:395,value:0},      //C2
+                {x:673,y:327,value:0},      //C3
+                {x:673,y:254,value:0},      //C4
+                {x:448,y:200,value:0},      //D1
+                {x:410,y:200,value:0},      //D2
+                {x:448,y:299,value:0},      //E1
+                {x:408,y:299,value:0},      //E2
+                {x:317,y:229,value:0},      //F1
+                {x:317,y:285,value:0},      //F2
+                {x:306,y:335,value:0},      //G1
+                {x:252,y:429,value:0},      //G2
+                {x:547,y:482,value:0},      //墨1
+                {x:547,y:447,value:0},      //墨2
+                {x:408,y:467,value:0},      //特1
+                {x:368,y:467,value:0}       //特2
+            ]
+        };
+        var dataPoint1 = {
+            max:100,
+            min:0,
+            data:[{x:233,y:234,value:0}]
+        };
+//        console.log(dataPoint_c.data[0]);
+        //学生组
+        var data_queue1 = [
+            4,5,0,6,7,2,3,8,1,9,13,12,14,15,19,
+            18,19,18,4,4,18,4,
+            15,19,7,7,6,17,16,
+            16,17,18,18,15
+        ];
+        //白领组
+        var data_queue2 = [
+            18,15,0,2,8,9,10,11,8,
+            19,15,14,12,11,13,8,3,6,7,6,5,0,4,12,13,
+            19,14,14,12,12,6,6
+        ];
+        //创建对象
+        var h_map = h337.create(config);
+        h_map.setData(dataPoint);
+
+        function paint(arguement){
+            if(typeof(timer)!="undefined"){
+                clearInterval(timer);
+            }
+            var dataPoint_c = {};
+            $.extend(true,dataPoint_c,dataPoint);
+            var i = 0;
+            var arg_len = arguement.length;
+            timer = setInterval(function(){
+                if (i==(arg_len-1)){
+                    clearInterval(timer);
+                }
+                dataPoint_c.data[arguement[i]].value +=10;
+                h_map.setData(dataPoint_c);
+                i++;
+
+            },100);
+
+        }
+    })()
+</script>
+</html>

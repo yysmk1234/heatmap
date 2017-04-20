@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五彩城</title>
+    <style>
+        #main{
+            width: 1000px;
+            height: 600px;
+            border:1px solid #333;
+            margin: 100px auto 20px;
+            background: url("img/new_wu.png");
+            position: relative;
+        }
+        #main ul{
+            position: absolute;
+            height: 20px;
+            width: 5px;
+            list-style: none;
+            bottom: 80px;
+            left: 30px;
+        }
+        #main ul li{
+            border-left: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding-left: 7px;
+            position: relative;
+            height: 20px;
+        }
+        #main ul li span{
+            position: absolute;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            /*background: #333;*/
+            left: -18px;
+            bottom: 17px;
+        }
+        #main ul li b{
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+        }
+        .bt{
+            margin: 10px auto;
+            width: 1000px;
+            height: 50px;
+        }
+        .bt button{
+            outline: none;
+            border:none;
+            background: #99EBFF;
+            width: 200px;
+            border-radius: 4px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <ul>
+        <li><b>9</b></li>
+        <li><span style="background: red"></span><b>6</b></li>
+        <li><span style="background: blue"></span><b>3</b></li>
+        <li><span style="background: green"></span><b>0</b></li>
+    </ul>
+</div>
+<div class="bt">
+    <button class="child">学生</button>
+    <button class="worker">白领</button>
+    <button class="reset">重置</button>
+</div>
+</body>
+<script src="js/heatmap.js"></script>
+<script src="js/jquery.min.js"></script>
+<script>
+    (function () {
+        $('.reset').on("click",function(){
+            h_map.setData(dataPoint1);
+            clearInterval(timer);
+        });
+        $('.child').on("click",function(){
+            paint(data_queue1);
+//            console.log(dataPoint);
+        });
+        $('.worker').on("click",function(){
+            paint(data_queue2);
+        });
+
+//初始化
+        var config = {
+            container: document.getElementById('main'),
+            radius:40,
+            maxOpacity:.8,
+            minOpacity:0,
+            blur:.75,
+            gradient:{
+                '.3':'green',
+                '.6':'blue',
+                '.9':'red'
+            }
+        };
+        //初始化点
+        var dataPoint = {
+            max:100,
+            min:0,
+            data:[
+                {x:300,y:439,value:0},      //799柜台1
+                {x:388,y:439,value:0},      //799柜台2
+                {x:346,y:387,value:0},      //新品后
+                {x:655,y:437,value:0},      //新品前
+                {x:564,y:435,value:0},      //599柜台1
+                {x:564,y:392,value:0},      //599柜台2
+                {x:654,y:392,value:0},      //399柜台
+                {x:829,y:434,value:0},      //墨镜1
+                {x:830,y:341,value:0},      //儿童墨镜
+                {x:830,y:259,value:0},      //墨镜2
+                {x:757,y:202,value:0},      //墨镜3
+                {x:662,y:202,value:0},      //墨镜4
+                {x:572,y:202,value:0},      //墨镜5
+                {x:505,y:254,value:0},      //展柜2
+                {x:414,y:254,value:0}       //展柜1
+            ]
+        };
+        var dataPoint1 = {
+            max:100,
+            min:0,
+            data:[{x:233,y:234,value:0}]
+        };
+//        console.log(dataPoint_c.data[0]);
+        //学生组
+        var data_queue1 = [
+            1,0,5,6,7,8,9,10,11,12,6,5,2,0,1,
+            1,0,4,3,
+            1,2,4,6,13,14
+        ];
+        //白领组
+        var data_queue2 = [
+            0,1,4,3,2,
+            13,12,11,10,9,8,7,12
+        ];
+        //创建对象
+        var h_map = h337.create(config);
+        h_map.setData(dataPoint);
+
+        function paint(arguement){
+            if(typeof(timer)!="undefined"){
+                clearInterval(timer);
+            }
+            var dataPoint_c = {};
+            $.extend(true,dataPoint_c,dataPoint);
+            var i = 0;
+            var arg_len = arguement.length;
+            timer = setInterval(function(){
+                if (i==(arg_len-1)){
+                    clearInterval(timer);
+                }
+                dataPoint_c.data[arguement[i]].value +=10;
+                h_map.setData(dataPoint_c);
+                i++;
+
+            },100);
+
+        }
+    })()
+</script>
+</html>
