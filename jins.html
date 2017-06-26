@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>JINS</title>
+    <link href="css/css.css" rel="stylesheet">
     <style>
         #main{
             width: 1000px;
@@ -12,60 +13,27 @@
             background: url("img/jins.png");
             position: relative;
         }
-        #main ul{
-            position: absolute;
-            height: 20px;
-            width: 5px;
-            list-style: none;
-            bottom: 80px;
-            left: 30px;
-        }
-        #main ul li{
-            border-left: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding-left: 7px;
-            position: relative;
-            height: 20px;
-        }
-        #main ul li span{
-            position: absolute;
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            /*background: #333;*/
-            left: -18px;
-            bottom: 17px;
-        }
-        #main ul li b{
-            position: absolute;
-            bottom: -10px;
-            left: 10px;
-        }
-        .bt{
-            margin: 10px auto;
-            width: 1000px;
-            height: 50px;
-        }
-        .bt button{
-            outline: none;
-            border:none;
-            background: #99EBFF;
-            width: 200px;
-            border-radius: 4px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 14px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 <div id="main">
+    <table cellspacing="0" >
+        <tr>
+            <td colspan="2">参加测试人数比例</td>
+        </tr>
+        <tr>
+            <td>学生</td>
+            <td>白领</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>3</td>
+        </tr>
+    </table>
     <ul>
-        <li><b>9</b></li>
-        <li><span style="background: red"></span><b>6</b></li>
-        <li><span style="background: blue"></span><b>3</b></li>
+        <li><b>9人次</b></li>
+        <li><span style="background: red"></span><b>6人次</b></li>
+        <li><span style="background: blue"></span><b>3人次</b></li>
         <li><span style="background: green"></span><b>0</b></li>
     </ul>
 </div>

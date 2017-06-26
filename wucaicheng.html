@@ -3,69 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>五彩城</title>
+</head>
+    <link href="css/css.css" rel="stylesheet">
     <style>
         #main{
             width: 1000px;
             height: 600px;
             border:1px solid #333;
             margin: 100px auto 20px;
-            background: url("img/new_wu.png");
+            background: url("img/wucaicheng_.png");
             position: relative;
-        }
-        #main ul{
-            position: absolute;
-            height: 20px;
-            width: 5px;
-            list-style: none;
-            bottom: 80px;
-            left: 30px;
-        }
-        #main ul li{
-            border-left: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding-left: 7px;
-            position: relative;
-            height: 20px;
-        }
-        #main ul li span{
-            position: absolute;
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            /*background: #333;*/
-            left: -18px;
-            bottom: 17px;
-        }
-        #main ul li b{
-            position: absolute;
-            bottom: -10px;
-            left: 10px;
-        }
-        .bt{
-            margin: 10px auto;
-            width: 1000px;
-            height: 50px;
-        }
-        .bt button{
-            outline: none;
-            border:none;
-            background: #99EBFF;
-            width: 200px;
-            border-radius: 4px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 14px;
-            margin-right: 10px;
-            cursor: pointer;
         }
     </style>
-</head>
 <body>
 <div id="main">
+    <table cellspacing="0" >
+        <tr>
+            <td colspan="2">参加测试人数比例</td>
+        </tr>
+        <tr>
+            <td>学生</td>
+            <td>白领</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>6</td>
+        </tr>
+    </table>
     <ul>
-        <li><b>9</b></li>
-        <li><span style="background: red"></span><b>6</b></li>
-        <li><span style="background: blue"></span><b>3</b></li>
+        <li><b>9人次</b></li>
+        <li><span style="background: red"></span><b>6人次</b></li>
+        <li><span style="background: blue"></span><b>3人次</b></li>
         <li><span style="background: green"></span><b>0</b></li>
     </ul>
 </div>
@@ -136,12 +104,16 @@
         var data_queue1 = [
             1,0,5,6,7,8,9,10,11,12,6,5,2,0,1,
             1,0,4,3,
-            1,2,4,6,13,14
+            1,2,4,6,13,14,
+            0,1,2,14,13,5,6,3,4,7,8,9,10,11,12,9,8
         ];
         //白领组
         var data_queue2 = [
             0,1,4,3,2,
-            13,12,11,10,9,8,7,12
+            13,12,11,10,9,8,7,12,
+            3,4,14,13,5,13,0,2,5,6,12,11,10,9,8,9,8,9,7,8,
+            7,8,9,10,11,4,1,
+            0,2,14,13,14
         ];
         //创建对象
         var h_map = h337.create(config);
